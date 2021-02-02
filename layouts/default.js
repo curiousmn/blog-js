@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-const name = "Utku Demirel";
+const name = "Your name";
 
 export const siteTitle = "Blog";
 
@@ -18,12 +18,16 @@ export default function Layout({ children, home }) {
                   </Link>
 
                   <p className="text-xs md:text-sm lg:text-base text-opacity-40 text-gray-900	 text-right ">
-                    A curious teen, developer and nerd
+                    "your text"
                   </p>
                 </div>
                 <div className="flex justify-end space-x-2 md:space-x-6 lg:space-x-10">
-                  <img src="/github.png" className="w-8 h-8 md:w-16 md:h-16" ></img>
-                  <img src="/twitter.png" className="w-8 h-8 md:w-16 md:h-16"></img>
+                  <a href=""> {/* <--Your Github link --> */}
+                    <img src="/github.png" className="w-8 h-8 md:w-16 md:h-16" ></img>
+                  </a>
+                  <a href=""> {/* <--Your Twitter link --> */}
+                    <img src="/twitter.png" className="w-8 h-8 md:w-16 md:h-16"></img>
+                  </a>
                 </div>
               </div>
             </>

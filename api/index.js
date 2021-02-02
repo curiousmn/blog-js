@@ -6,16 +6,15 @@ import path from 'path'
 
 const postDirectory = path.join(process.cwd(), 'posts')
 
-export default function getSortedPostData(){
+export default async function getSortedPostData(){
     const fileNames = fs.readdirSync(postDirectory)
-    const allPostData = fileNames.map(fileName => {
+    const allPostData = await Promise.all(fileNames.map(fileName => {
         const id = fileName.replace(/\.md$/,'')
         const fullPath = path.join(postDirectory, fileName)
         const fileContents = fs.readFileSync(fullPath, 'utf-8')
     
         const matterResult = matter(fileContents)
         let content = matterResult.content
-
         let dot = 0
         for(let i=0; i<content.length; i++){
             if(content[i] === "."){
@@ -31,7 +30,7 @@ export default function getSortedPostData(){
             content,
             ...matterResult.data
         }
-    })
+    }))
 
     return allPostData.sort((a,b) => {
         if(a.date < b.date){
@@ -51,7 +50,6 @@ export async function getPostData(id){
     const processedContent = await remark()
         .use(html)
         .process(matterResult.content)
-
     const contentHTML = processedContent.toString() 
 
     return {

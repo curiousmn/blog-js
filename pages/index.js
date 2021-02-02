@@ -6,8 +6,7 @@ import Layout from "../layouts/default";
 import getSortedPostData from "../api/index";
 
 export async function getStaticProps() {
-  const allPostData = getSortedPostData();
-
+  const allPostData = await getSortedPostData();
   return {
     props: {
       allPostData,
